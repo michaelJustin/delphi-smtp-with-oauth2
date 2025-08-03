@@ -11,3 +11,17 @@
 * Add required package for FPCUnit to the project
 * 64 Bit OpenSSL DLLs from Indy
 * Indy Sockets
+
+# Configuration
+
+* Add tenant id, client id and client secret in unit oauth2tokenprovider 
+
+https://github.com/michaelJustin/delphi-smtp-with-oauth2/blob/dfa633624479bd1587e303aa33ed224aa352957c/src/main/oauth2tokenprovider.pas#L29-L32
+
+* Set recipient address and name in unit smtpoauth2client
+
+https://github.com/michaelJustin/delphi-smtp-with-oauth2/blob/dfa633624479bd1587e303aa33ed224aa352957c/src/main/smtpoauth2client.pas#L46-L48
+
+* Set authorized user in smtpoauth2client
+ 
+https://github.com/michaelJustin/delphi-smtp-with-oauth2/blob/dfa633624479bd1587e303aa33ed224aa352957c/src/main/smtpoauth2client.pas#L57-L58
