@@ -1,0 +1,28 @@
+name: Build FpcTests
+
+on:
+  push:
+    paths:
+      - 'src/test/FpcTests.lpr'
+      - '.github/workflows/**'
+  pull_request:
+    paths:
+      - 'src/test/FpcTests.lpr'
+      - '.github/workflows/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Free Pascal Compiler
+        run: sudo apt-get update && sudo apt-get install -y fp-compiler
+
+      - name: Build FpcTests.lpr
+        run: fpc src/test/FpcTests.lpr
+
+      - name: Show test binary
+        run: ls -l src/test/
