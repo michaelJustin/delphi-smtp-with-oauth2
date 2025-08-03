@@ -18,11 +18,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Free Pascal Compiler
-        run: sudo apt-get update && sudo apt-get install -y fp-compiler
+      - name: Install Lazarus and FPC
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y lazarus fpc
 
-      - name: Build FpcTests.lpr
-        run: fpc src/test/FpcTests.lpr
+      - name: Build with lazbuild
+        run: |
+          lazbuild src/test/FpcTests.lpi
 
       - name: Show test binary
         run: ls -l src/test/
+
