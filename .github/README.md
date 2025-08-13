@@ -4,7 +4,7 @@
 ![GitHub forks](https://img.shields.io/github/forks/michaelJustin/delphi-smtp-with-oauth2?style=social)
 ![GitHub top language](https://img.shields.io/github/languages/top/michaelJustin/delphi-smtp-with-oauth2)
 
-# Delphi SMTP With OAuth2
+# Secure Delphi SMTP With OAuth2
 
 # Requirements for FPCUnit test project
 * Lazarus IDE
