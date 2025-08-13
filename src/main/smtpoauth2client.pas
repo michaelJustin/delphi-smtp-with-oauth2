@@ -7,26 +7,12 @@ procedure SendSMTP(const OAuth2Token: string);
 implementation
 
 uses
-  IdSMTP, IdSSLOpenSSL, IdMessage, IdGlobal, IdEMailAddress,
-  IdUserPassProvider, IdSASLCollection, IdSASLOAuth,
-  IdExplicitTLSClientServerBase, IdCoder, IdCoderMIME,
+  IdSMTP, IdSSLOpenSSL, IdMessage, IdGlobal, IdEMailAddress, IdSASLOAuth,
+  IdUserPassProvider, IdSASLCollection, IdExplicitTLSClientServerBase,
   Classes, SysUtils;
-
-function EncodeBase64(const Input: string): string;
-var
-  Encoder: TIdEncoderMIME;
-begin
-  Encoder := TIdEncoderMIME.Create(nil);
-  try
-    Result := Encoder.EncodeString(Input);
-  finally
-    Encoder.Free;
-  end;
-end;
 
 procedure SendSMTP(const OAuth2Token: string);
 var
-  Base64EncodedToken: string;
   IdSMTP: TIdSMTP;
   IdMessage: TIdMessage;
   AddressItem: TIdEMailAddressItem;
@@ -34,8 +20,6 @@ var
   IOHandler: TidSSLIOHandlerSocketOpenSSL;
   UserPass: TIdUserPassProvider;
 begin
-  Base64EncodedToken := EncodeBase64(OAuth2Token);
-
   IdSMTP := TIdSMTP.Create;
   try
     IdSMTP.Host := 'smtp.office365.com';
@@ -43,6 +27,8 @@ begin
 
     IdMessage := TIdMessage.Create(IdSMTP);
     try
+      IdMessage.From.Address := 'user@example.com';
+
       AddressItem := IdMessage.Recipients.Add;
       AddressItem.Address := 'recipient@example.com';
       AddressItem.Name := 'Recipient';
@@ -56,7 +42,7 @@ begin
 
       UserPass := TIdUserPassProvider.Create(IdSMTP);
       UserPass.Username := 'user@example.com';
-      UserPass.Password := Base64EncodedToken;
+      UserPass.Password := OAuth2Token;
 
       Auth := IdSMTP.SASLMechanisms.Add;
       Auth.SASL := TIdSASLXOAuth2.Create(IdSMTP);

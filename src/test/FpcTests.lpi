@@ -45,6 +45,7 @@
       <Unit>
         <Filename Value="..\main\oauth2tokenprovider.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="OAuth2TokenProvider"/>
       </Unit>
       <Unit>
         <Filename Value="..\main\smtpoauth2client.pas"/>

@@ -16,9 +16,9 @@ var
   IOHandler: TIdSSLIOHandlerSocketOpenSSL;
 begin
   Result := TIdHTTP.Create;
-
   IOHandler := TIdSSLIOHandlerSocketOpenSSL.Create(Result);
   IOHandler.SSLOptions.SSLVersions := [sslvTLSv1_2];
+  IOHandler.SSLOptions.Mode := sslmClient;
   Result.IOHandler := IOHandler;
 end;
 
@@ -53,24 +53,19 @@ end;
 
 function FetchToken: string;
 var
-  jsonData: TJSONData;
-  jsonObject: TJSONObject;
-  jsonString: string;
-  PostResponse: string;
-  AccessToken: string;
+  JsonString: string;
+  JsonData: TJSONData;
+  JsonObject: TJSONObject;
 begin
-  jsonString := SendPost;
-  jsonData := GetJSON(jsonString);
-
-  if jsonData.JSONType = jtObject then
+  JsonString := SendPost;
+  JsonData := GetJSON(JsonString);
+  if JsonData.JSONType = jtObject then
   begin
-    jsonObject := TJSONObject(jsonData);
-    AccessToken := jsonObject.Get('access_token', '');
+    JsonObject := TJSONObject(JsonData);
+    Result := JsonObject.Get('access_token', '');
   end
   else
-    assert(False, 'Invalid JSON object');
-
-  Result := AccessToken;
+    Assert(False, 'Invalid JSON object');
 end;
 
 end.
