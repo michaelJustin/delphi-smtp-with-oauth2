@@ -22,6 +22,6 @@ https://github.com/michaelJustin/delphi-smtp-with-oauth2/blob/dfa633624479bd1587
 
 https://github.com/michaelJustin/delphi-smtp-with-oauth2/blob/dfa633624479bd1587e303aa33ed224aa352957c/src/main/smtpoauth2client.pas#L46-L48
 
-* Set authorized user in smtpoauth2client
+* Set authorized user and password (the auth token) in smtpoauth2client
  
 https://github.com/michaelJustin/delphi-smtp-with-oauth2/blob/dfa633624479bd1587e303aa33ed224aa352957c/src/main/smtpoauth2client.pas#L57-L59
